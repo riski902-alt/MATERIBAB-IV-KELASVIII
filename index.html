@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INFORMATIKA FUN - Kelas VIII Bab IV: Dampak Sosial Informatika</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* =========================================================
+           1. PALET WARNA FINAL (CSS VARIABLES)
+           ========================================================= */
+        :root {
+            /* Backgrounds */
+            --bg-main: #EAF6FF;
+            --bg-section: #F7FBFF;
+            --bg-deco: #DFF1FF;
+            --white: #FFFFFF;
+
+            /* Teks */
+            --title-main: #173B57;
+            --title-sub: #41677F;
+            --text-btn: #FFFFFF;
+            --text-add: #36566A;
+
+            /* Warna Masing-masing Tombol Sesuai Instruksi */
+            --btn-p1: #527F9B;
+            --btn-p2: #557C9A;
+            --btn-p3: #5B7894;
+            --btn-p4: #4E82A8;
+            --btn-p5: #506F99;
+            --btn-p6: #527F82;
+            --btn-p7: #5A8296;
+            --btn-p8: #667FA3;
+            --btn-p9: #557C9A;
+            --btn-games: #667FA3;
+            --btn-sumatif: #5B7894;
+
+            /* Border & Shadow */
+            --border-default: 2px solid #315C78;
+            --border-hover: #234A65;
+            --shadow-default: 0 6px 18px rgba(37, 83, 112, 0.12);
+            --shadow-hover: 0 10px 24px rgba(37, 83, 112, 0.20);
+
+            /* Warna Aksen Dekoratif */
+            --accent-cyan: #67C5D8;
+            --accent-green: #7DB8A3;
+            --accent-gold: #D8B86A;
+            --accent-blue: #82B5D4;
+            --accent-security: #6AA89C;
+        }
+
+        /* RESET & BASE STYLES */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-add);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* =========================================================
+           2. ANIMASI BACKGROUND DEKORATIF (SUBTLE & AMAN)
+           ========================================================= */
+        .bg-deco-icon {
+            position: absolute;
+            color: var(--bg-deco);
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .float-anim { animation: floatSlow 7s ease-in-out infinite; }
+        .pulse-anim { animation: pulseSlow 5s ease-in-out infinite; }
+        
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+        @keyframes pulseSlow {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
+        /* CONTAINER UTAMA */
+        .container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* HEADER STYLES */
+        header {
+            text-align: center;
+            width: 100%;
+        }
+        .class-label {
+            color: var(--title-main);
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+        .main-title {
+            color: var(--title-main);
+            font-weight: 800;
+        }
+        .subtitle {
+            color: var(--title-sub);
+            font-weight: 500;
+        }
+
+        /* =========================================================
+           3. STYLING TOMBOL MATERI (BENTO GRID VERTIKAL)
+           ========================================================= */
+        .button-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .learning-btn {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            color: var(--text-btn);
+            border: var(--border-default);
+            box-shadow: var(--shadow-default);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* HOVER DESKTOP */
+        .learning-btn:hover {
+            transform: translateY(-3px) scale(1.01);
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-hover);
+            filter: brightness(1.05);
+        }
+
+        /* TOUCH / CLICK ANIMATION */
+        .learning-btn:active {
+            transform: translateY(2px) scale(0.98);
+            box-shadow: 0 4px 12px rgba(37, 83, 112, 0.15);
+            border-color: var(--border-hover);
+        }
+
+        /* ANATOMI TOMBOL: AREA IKON */
+        .icon-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            transition: transform 0.25s ease;
+        }
+        .learning-btn:hover .icon-area {
+            transform: scale(1.1) rotate(-4deg);
+        }
+        .learning-btn:active .icon-area {
+            transform: scale(0.95);
+        }
+
+        /* ANATOMI TOMBOL: TEKS (Wajib Rata Kiri-Kanan / Justified) */
+        .btn-text {
+            flex-grow: 1;
+            color: var(--text-btn);
+            text-align: justify;
+            text-justify: inter-word; /* Mengoptimalkan jarak antar kata */
+            word-wrap: break-word;
+            overflow-wrap: break-word; /* Mencegah teks keluar batas */
+            hyphens: auto;
+        }
+
+        /* PANAH DEKORATIF KANAN */
+        .arrow-area {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-left: 12px;
+            flex-shrink: 0;
+            transition: transform 0.25s ease, color 0.25s ease;
+        }
+        .learning-btn:hover .arrow-area {
+            transform: translateX(4px);
+            color: var(--white);
+        }
+
+        /* BACKGROUND WARNA MASING-MASING TOMBOL */
+        .btn-p1 { background-color: var(--btn-p1); }
+        .btn-p2 { background-color: var(--btn-p2); }
+        .btn-p3 { background-color: var(--btn-p3); }
+        .btn-p4 { background-color: var(--btn-p4); }
+        .btn-p5 { background-color: var(--btn-p5); }
+        .btn-p6 { background-color: var(--btn-p6); }
+        .btn-p7 { background-color: var(--btn-p7); }
+        .btn-p8 { background-color: var(--btn-p8); }
+        .btn-p9 { background-color: var(--btn-p9); }
+        .btn-games { background-color: var(--btn-games); }
+        .btn-sumatif { background-color: var(--btn-sumatif); }
+
+        /* RIPPLE EFFECT UNTUK INTERAKSI SENTUHAN */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-anim 0.5s linear;
+            background-color: rgba(255, 255, 255, 0.3);
+            pointer-events: none;
+        }
+        @keyframes ripple-anim {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* =========================================================
+           4. RESPONSIVITAS PRESI SESUAI SPESIFIKASI
+           ========================================================= */
+
+        /* A. DESKTOP — ≥ 1200px */
+        @media (min-width: 1200px) {
+            .container {
+                width: 92%;
+                max-width: 1100px;
+                margin: 0 auto;
+            }
+            header {
+                padding-top: 48px;
+                padding-bottom: 32px;
+            }
+            .class-label { font-size: 20px; line-height: 1.15; }
+            .main-title { font-size: 38px; line-height: 1.15; margin-top: 4px; }
+            .subtitle { font-size: 17px; line-height: 1.6; margin-top: 10px; }
+            .button-list { margin-top: 28px; }
+
+            .learning-btn {
+                min-height: 82px;
+                height: auto; /* Memastikan bisa bertambah tinggi jika teks sangat panjang */
+                padding: 18px 26px;
+                border-radius: 18px;
+                margin-bottom: 16px;
+            }
+            .btn-text {
+                font-size: 17px;
+                font-weight: 600;
+                line-height: 1.5;
+                margin-left: 20px;
+            }
+            .icon-area {
+                width: 52px;
+                font-size: 32px;
+            }
+        }
+
+        /* B. TABLET — 768px sampai 1199px */
+        @media (min-width: 768px) and (max-width: 1199px) {
+            .container {
+                width: 90%;
+                max-width: 900px;
+            }
+            header {
+                padding-top: 38px;
+                padding-bottom: 26px;
+            }
+            .class-label { font-size: 18px; line-height: 1.15; }
+            .main-title { font-size: 32px; line-height: 1.15; margin-top: 4px; }
+            .subtitle { font-size: 16px; line-height: 1.6; margin-top: 10px; }
+            .button-list { margin-top: 28px; }
+
+            .learning-btn {
+                min-height: 78px;
+                height: auto;
+                padding: 17px 22px;
+                border-radius: 16px;
+                margin-bottom: 14px;
+            }
+            .btn-text {
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 1.5;
+                margin-left: 16px;
+            }
+            .icon-area {
+                width: 48px;
+                font-size: 28px;
+            }
+        }
+
+        /* C. SMARTPHONE — ≤ 767px */
+        @media (max-width: 767px) {
+            .container {
+                width: 92%;
+                max-width: none;
+            }
+            header {
+                padding-top: 28px;
+                padding-bottom: 20px;
+            }
+            .class-label { font-size: 16px; line-height: 1.2; }
+            .main-title { font-size: 25px; line-height: 1.2; margin-top: 4px; }
+            .subtitle { font-size: 14px; line-height: 1.5; margin-top: 10px; }
+            .button-list { margin-top: 28px; }
+
+            .learning-btn {
+                min-height: 76px;
+                height: auto;
+                padding: 16px 18px;
+                border-radius: 15px;
+                margin-bottom: 12px;
+            }
+            .btn-text {
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 1.55;
+                margin-left: 12px;
+            }
+            .icon-area {
+                width: 42px;
+                font-size: 26px;
+            }
+        }
+
+        /* D. SMARTPHONE KECIL — ≤ 480px */
+        @media (max-width: 480px) {
+            .container {
+                width: 94%;
+            }
+            .main-title { font-size: 22px; }
+            .subtitle { font-size: 13px; }
+
+            .learning-btn {
+                min-height: 72px;
+                padding: 14px 15px;
+                border-radius: 14px;
+            }
+            .btn-text {
+                font-size: 13px;
+                line-height: 1.55;
+                margin-left: 10px;
+            }
+            .icon-area {
+                width: 38px;
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- DEKORASI BACKGROUND (TEMA KEAMANAN DIGITAL, EMPATI, DAN KOMUNIKASI) -->
+    <!-- Ikon-ikon ini memberikan kesan positif dan aman -->
+    <i class="fa-solid fa-cloud bg-deco-icon float-anim" style="top: 8%; left: 5%; font-size: 90px; animation-delay: 0s;"></i>
+    <i class="fa-solid fa-shield-heart bg-deco-icon pulse-anim" style="top: 22%; right: 6%; font-size: 80px; animation-delay: 1.5s;"></i>
+    <i class="fa-solid fa-shoe-prints bg-deco-icon float-anim" style="bottom: 35%; left: 6%; font-size: 70px; animation-delay: 3s; transform: rotate(-15deg);"></i>
+    <i class="fa-regular fa-comments bg-deco-icon float-anim" style="bottom: 12%; right: 8%; font-size: 75px; animation-delay: 2s;"></i>
+
+    <!-- KONTAINER UTAMA -->
+    <div class="container">
+        
+        <!-- HEADER (BAGIAN YANG DIPERBARUI) -->
+        <header>
+            <div class="class-label">KELAS VIII - BAB IV</div>
+            <h1 class="main-title">DAMPAK SOSIAL INFORMATIKA</h1>
+        </header>
+
+        <!-- LIST TOMBOL UTAMA -->
+        <main class="button-list">
+
+            <!-- Pertemuan 1 -->
+            <a href="#LINK_PERTEMUAN_1" class="learning-btn btn-p1">
+                <div class="icon-area" style="color: var(--accent-cyan);">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                </div>
+                <div class="btn-text">
+                    Pertemuan 1: Bentuk dan Jenis Perundungan Digital
+                </div>
+                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+            <!-- Pertemuan 2 -->
+            <a href="#LINK_PERTEMUAN_2" class="learning-btn btn-p2">
+                <div class="icon-area" style="color: var(--accent-security);">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                </div>
+                <div class="btn-text">
+                    Pertemuan 2: Dampak Psikologis, Sosial, serta Aspek Hukum Perundungan Digital
+                </div>
+                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+            <!-- Pertemuan 3 -->
+            <a href="#LINK_PERTEMUAN_3" class="learning-btn btn-p3">
+                <div class="icon-area" style="color: var(--accent-green);">
+                    <i class="fa-solid fa-hand-holding-hand"></i>
+                </div>
+                <div class="btn-text">
+                    Pertemuan 3: Strategi Pencegahan dan Penanganan Kasus Cyberbullying
+                </div>
+                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+            <!-- Pertemuan 4 -->
+            <a href="#LINK_PERTEMUAN_4" class="learning-btn btn-p4">
+                <div class="icon-area" style="color: var(--accent-gold);">
+                    <i class="fa-solid fa-shoe-prints"></i>
+                </div>
+                <div class="btn-text">
+                    Pertemuan 4: Pengenalan Rekam Jejak Digital
+                </div>
+                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+            <!-- Pertemuan 5 -->
+            <a href="#LINK_PERTEMUAN_5" class="learning-btn btn-p5">
+                <div class="icon-area" style="color: var(--accent-blue);">
+                    <i class="fa-solid fa-user-lock"></i>
+                </div>
+                <div class="btn-text">
+                    Pertemuan 5: Dampak Rekam Jejak Digital Terhadap Privasi, Reputasi, dan Masa Depan
+                </div>
+                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+            <!-- Pertemuan 6 -->
+            <a href="#LINK_PERTEMUAN_6" class="learning-btn btn-p6">
+                <div class="icon-area" style="color: var(--accent-security);">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="btn-text">
+                    Pertemuan 6: Manajemen Rekam Jejak Digital & Pengaturan Privasi Akun (Digital Hygiene)
+                </div>
+                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+            <!-- Pertemuan 7 -->
+            <a href="#LINK_PERTEMUAN_7" class="learning-btn btn-p7">
+                <div class="icon-area" style="color: var(--accent-cyan);">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+                <div class="btn-text">
+                    Pertemuan 7: Etika Berwarganet (Netiquette) dan Kebudayaan Komunikasi Berempati di Media Sosial
+                </div>
+                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+            <!-- Pertemuan 8 -->
+            <a href="#LINK_PERTEMUAN_8" class="learning-btn btn-p8">
+                <div class="icon-area" style="color: var(--accent-green);">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <div class="btn-text">
+                    Pertemuan 8: Menghargai Keragaman Pandangan dan Mencegah Ujaran Kebencian (Hate Speech)
+                </div>
+                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+            <!-- Pertemuan 9 -->
+            <a href="#LINK_PERTEMUAN_9" class="learning-btn btn-p9">
+                <div class="icon-area" style="color: var(--accent-gold);">
+                    <i class="fa-solid fa-bullhorn"></i>
+                </div>
+                <div class="btn-text">
+                    Pertemuan 9: Proyek Kampanye Digital / Analisis Kasus Kewargaan Digital Sehat
+                </div>
+                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+            <!-- Games -->
+            <a href="#LINK_GAMES" class="learning-btn btn-games">
+                <div class="icon-area" style="color: var(--accent-blue);">
+                    <i class="fa-solid fa-gamepad"></i>
+                </div>
+                <div class="btn-text">
+                    Games
+                </div>
+                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+            <!-- Sumatif BAB IV -->
+            <a href="#LINK_SUMATIF_BAB_IV" class="learning-btn btn-sumatif">
+                <div class="icon-area" style="color: var(--accent-security);">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                </div>
+                <div class="btn-text">
+                    Sumatif BAB IV
+                </div>
+                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+        </main>
+    </div>
+
+    <!-- SCRIPT RIPPLE EFFECT UNTUK INTERAKSI TENTUH/KLIK -->
+    <script>
+        document.querySelectorAll('.learning-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const circle = document.createElement('span');
+                circle.classList.add('ripple');
+
+                const diameter = Math.max(rect.width, rect.height);
+                circle.style.width = circle.style.height = `${diameter}px`;
+                circle.style.left = `${x - diameter / 2}px`;
+                circle.style.top = `${y - diameter / 2}px`;
+
+                btn.appendChild(circle);
+
+                setTimeout(() => {
+                    circle.remove();
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
