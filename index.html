@@ -15,46 +15,30 @@
 
     <style>
         /* =========================================================
-           1. PALET WARNA FINAL (CSS VARIABLES)
+           1. PALET WARNA FINAL (DISAMAKAN DENGAN INDEX 2)
            ========================================================= */
         :root {
             /* Backgrounds */
-            --bg-main: #EAF6FF;
-            --bg-section: #F7FBFF;
-            --bg-deco: #DFF1FF;
+            --bg-main: #4A7298;        /* Solid Denim Blue */
+            --card-bg: #1E3A5F;        /* Solid Navy Blue */
+            --card-hover-bg: #23436b;  /* Hover Navy Blue */
             --white: #FFFFFF;
 
             /* Teks */
-            --title-main: #173B57;
-            --title-sub: #41677F;
+            --title-main: #FFFFFF;
+            --title-sub: #E5E7EB;
             --text-btn: #FFFFFF;
-            --text-add: #36566A;
+            --text-add: #E5E7EB;
 
-            /* Warna Masing-masing Tombol Sesuai Instruksi */
-            --btn-p1: #527F9B;
-            --btn-p2: #557C9A;
-            --btn-p3: #5B7894;
-            --btn-p4: #4E82A8;
-            --btn-p5: #506F99;
-            --btn-p6: #527F82;
-            --btn-p7: #5A8296;
-            --btn-p8: #667FA3;
-            --btn-p9: #557C9A;
-            --btn-games: #667FA3;
-            --btn-sumatif: #5B7894;
-
-            /* Border & Shadow */
-            --border-default: 2px solid #315C78;
-            --border-hover: #234A65;
-            --shadow-default: 0 6px 18px rgba(37, 83, 112, 0.12);
-            --shadow-hover: 0 10px 24px rgba(37, 83, 112, 0.20);
-
-            /* Warna Aksen Dekoratif */
-            --accent-cyan: #67C5D8;
-            --accent-green: #7DB8A3;
-            --accent-gold: #D8B86A;
-            --accent-blue: #82B5D4;
-            --accent-security: #6AA89C;
+            /* Border & Highlights */
+            --border-default: 3px solid #88D4AB;  /* Highlight Hijau Mint */
+            --border-hover: 3px solid #A3E4C2;    /* Highlight Hijau Mint Cerah */
+            --outline-focus: #A3E4C2;
+            --icon-color: #88D4AB;                /* Warna Ikon Hijau Mint */
+            
+            /* Shadows HD Solid */
+            --shadow-default: 0 6px 15px rgba(0, 0, 0, 0.2);
+            --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
 
         /* RESET & BASE STYLES */
@@ -74,14 +58,16 @@
             align-items: center;
             position: relative;
             overflow-x: hidden;
+            padding-bottom: 24px;
         }
 
         /* =========================================================
-           2. ANIMASI BACKGROUND DEKORATIF (SUBTLE & AMAN)
+           2. ANIMASI BACKGROUND DEKORATIF
            ========================================================= */
         .bg-deco-icon {
             position: absolute;
-            color: var(--bg-deco);
+            color: #FFFFFF;
+            opacity: 0.15;
             z-index: 0;
             pointer-events: none;
         }
@@ -94,8 +80,8 @@
             50% { transform: translateY(-15px) rotate(3deg); }
         }
         @keyframes pulseSlow {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.05); opacity: 1; }
+            0%, 100% { transform: scale(1); opacity: 0.15; }
+            50% { transform: scale(1.05); opacity: 0.25; }
         }
 
         /* CONTAINER UTAMA */
@@ -105,29 +91,46 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            width: 100%;
+            min-height: 100vh;
+            justify-content: space-between;
         }
 
         /* HEADER STYLES */
         header {
             text-align: center;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
+        /* Styling Logo Atas Tengah (Ukuran Profesional) */
+        .header-logo {
+            width: 80px;
+            height: auto;
+            margin-bottom: 12px;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
+            transition: transform 0.3s ease;
+        }
+        .header-logo:hover {
+            transform: scale(1.08);
+        }
+
         .class-label {
-            color: var(--title-main);
-            font-weight: 800;
-            letter-spacing: 0.5px;
+            color: var(--title-sub);
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
         }
         .main-title {
             color: var(--title-main);
             font-weight: 800;
-        }
-        .subtitle {
-            color: var(--title-sub);
-            font-weight: 500;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
         }
 
         /* =========================================================
-           3. STYLING TOMBOL MATERI (BENTO GRID VERTIKAL)
+           3. STYLING TOMBOL MATERI (BENTO CARD STYLE INDEX 2)
            ========================================================= */
         .button-list {
             width: 100%;
@@ -140,12 +143,14 @@
             align-items: center;
             width: 100%;
             color: var(--text-btn);
+            background-color: var(--card-bg);
             border: var(--border-default);
+            border-radius: 24px;
             box-shadow: var(--shadow-default);
             text-decoration: none;
             position: relative;
             overflow: hidden;
-            transition: all 0.25s ease;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
@@ -153,78 +158,64 @@
 
         /* HOVER DESKTOP */
         .learning-btn:hover {
-            transform: translateY(-3px) scale(1.01);
-            border-color: var(--border-hover);
+            transform: scale(1.02) translateY(-4px);
+            background-color: var(--card-hover-bg);
+            border: var(--border-hover);
             box-shadow: var(--shadow-hover);
-            filter: brightness(1.05);
         }
 
         /* TOUCH / CLICK ANIMATION */
         .learning-btn:active {
-            transform: translateY(2px) scale(0.98);
-            box-shadow: 0 4px 12px rgba(37, 83, 112, 0.15);
-            border-color: var(--border-hover);
+            transform: scale(0.96);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         }
 
-        /* ANATOMI TOMBOL: AREA IKON */
+        /* AREA IKON */
         .icon-area {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-shrink: 0;
-            transition: transform 0.25s ease;
+            color: var(--icon-color) !important;
+            transition: transform 0.3s ease;
         }
         .learning-btn:hover .icon-area {
-            transform: scale(1.1) rotate(-4deg);
-        }
-        .learning-btn:active .icon-area {
-            transform: scale(0.95);
+            transform: scale(1.15) rotate(5deg);
         }
 
-        /* ANATOMI TOMBOL: TEKS (Wajib Rata Kiri-Kanan / Justified) */
+        /* TEKS TOMBOL */
         .btn-text {
             flex-grow: 1;
             color: var(--text-btn);
+            font-weight: 600;
             text-align: justify;
-            text-justify: inter-word; /* Mengoptimalkan jarak antar kata */
+            text-justify: inter-word;
             word-wrap: break-word;
-            overflow-wrap: break-word; /* Mencegah teks keluar batas */
+            overflow-wrap: break-word;
             hyphens: auto;
         }
 
         /* PANAH DEKORATIF KANAN */
         .arrow-area {
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--icon-color);
+            opacity: 0.8;
             margin-left: 12px;
             flex-shrink: 0;
-            transition: transform 0.25s ease, color 0.25s ease;
+            transition: transform 0.25s ease, opacity 0.25s ease;
         }
         .learning-btn:hover .arrow-area {
             transform: translateX(4px);
-            color: var(--white);
+            opacity: 1;
         }
 
-        /* BACKGROUND WARNA MASING-MASING TOMBOL */
-        .btn-p1 { background-color: var(--btn-p1); }
-        .btn-p2 { background-color: var(--btn-p2); }
-        .btn-p3 { background-color: var(--btn-p3); }
-        .btn-p4 { background-color: var(--btn-p4); }
-        .btn-p5 { background-color: var(--btn-p5); }
-        .btn-p6 { background-color: var(--btn-p6); }
-        .btn-p7 { background-color: var(--btn-p7); }
-        .btn-p8 { background-color: var(--btn-p8); }
-        .btn-p9 { background-color: var(--btn-p9); }
-        .btn-games { background-color: var(--btn-games); }
-        .btn-sumatif { background-color: var(--btn-sumatif); }
-
-        /* RIPPLE EFFECT UNTUK INTERAKSI SENTUHAN */
+        /* RIPPLE EFFECT */
         .ripple {
             position: absolute;
             border-radius: 50%;
             transform: scale(0);
-            animation: ripple-anim 0.5s linear;
-            background-color: rgba(255, 255, 255, 0.3);
+            animation: ripple-anim 0.4s linear;
+            background-color: rgba(255, 255, 255, 0.4);
             pointer-events: none;
         }
         @keyframes ripple-anim {
@@ -235,7 +226,26 @@
         }
 
         /* =========================================================
-           4. RESPONSIVITAS PRESI SESUAI SPESIFIKASI
+           4. FOOTER STYLING
+           ========================================================= */
+        .page-footer {
+            width: 100%;
+            text-align: center;
+            padding-top: 20px;
+            padding-bottom: 10px;
+            border-top: 1px solid rgba(136, 212, 171, 0.3);
+            margin-top: 32px;
+        }
+
+        .page-footer p {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.85);
+            letter-spacing: 0.8px;
+        }
+
+        /* =========================================================
+           5. RESPONSIVITAS PRESI SESUAI SPESIFIKASI
            ========================================================= */
 
         /* A. DESKTOP — ≥ 1200px */
@@ -246,24 +256,22 @@
                 margin: 0 auto;
             }
             header {
-                padding-top: 48px;
-                padding-bottom: 32px;
+                padding-top: 40px;
+                padding-bottom: 24px;
             }
-            .class-label { font-size: 20px; line-height: 1.15; }
+            .class-label { font-size: 18px; line-height: 1.15; }
             .main-title { font-size: 38px; line-height: 1.15; margin-top: 4px; }
-            .subtitle { font-size: 17px; line-height: 1.6; margin-top: 10px; }
-            .button-list { margin-top: 28px; }
+            .button-list { margin-top: 24px; }
 
             .learning-btn {
                 min-height: 82px;
-                height: auto; /* Memastikan bisa bertambah tinggi jika teks sangat panjang */
+                height: auto;
                 padding: 18px 26px;
-                border-radius: 18px;
+                border-radius: 24px;
                 margin-bottom: 16px;
             }
             .btn-text {
                 font-size: 17px;
-                font-weight: 600;
                 line-height: 1.5;
                 margin-left: 20px;
             }
@@ -280,24 +288,22 @@
                 max-width: 900px;
             }
             header {
-                padding-top: 38px;
-                padding-bottom: 26px;
+                padding-top: 32px;
+                padding-bottom: 20px;
             }
-            .class-label { font-size: 18px; line-height: 1.15; }
+            .class-label { font-size: 16px; line-height: 1.15; }
             .main-title { font-size: 32px; line-height: 1.15; margin-top: 4px; }
-            .subtitle { font-size: 16px; line-height: 1.6; margin-top: 10px; }
-            .button-list { margin-top: 28px; }
+            .button-list { margin-top: 20px; }
 
             .learning-btn {
                 min-height: 78px;
                 height: auto;
                 padding: 17px 22px;
-                border-radius: 16px;
+                border-radius: 20px;
                 margin-bottom: 14px;
             }
             .btn-text {
                 font-size: 16px;
-                font-weight: 600;
                 line-height: 1.5;
                 margin-left: 16px;
             }
@@ -314,24 +320,23 @@
                 max-width: none;
             }
             header {
-                padding-top: 28px;
-                padding-bottom: 20px;
+                padding-top: 24px;
+                padding-bottom: 16px;
             }
-            .class-label { font-size: 16px; line-height: 1.2; }
+            .header-logo { width: 68px; }
+            .class-label { font-size: 14px; line-height: 1.2; }
             .main-title { font-size: 25px; line-height: 1.2; margin-top: 4px; }
-            .subtitle { font-size: 14px; line-height: 1.5; margin-top: 10px; }
-            .button-list { margin-top: 28px; }
+            .button-list { margin-top: 18px; }
 
             .learning-btn {
                 min-height: 76px;
                 height: auto;
                 padding: 16px 18px;
-                border-radius: 15px;
+                border-radius: 18px;
                 margin-bottom: 12px;
             }
             .btn-text {
                 font-size: 14px;
-                font-weight: 600;
                 line-height: 1.55;
                 margin-left: 12px;
             }
@@ -339,6 +344,7 @@
                 width: 42px;
                 font-size: 26px;
             }
+            .page-footer p { font-size: 0.78rem; }
         }
 
         /* D. SMARTPHONE KECIL — ≤ 480px */
@@ -346,13 +352,14 @@
             .container {
                 width: 94%;
             }
+            .header-logo { width: 58px; }
+            .class-label { font-size: 13px; }
             .main-title { font-size: 22px; }
-            .subtitle { font-size: 13px; }
 
             .learning-btn {
                 min-height: 72px;
                 padding: 14px 15px;
-                border-radius: 14px;
+                border-radius: 16px;
             }
             .btn-text {
                 font-size: 13px;
@@ -363,13 +370,13 @@
                 width: 38px;
                 font-size: 24px;
             }
+            .page-footer p { font-size: 0.72rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- DEKORASI BACKGROUND (TEMA KEAMANAN DIGITAL, EMPATI, DAN KOMUNIKASI) -->
-    <!-- Ikon-ikon ini memberikan kesan positif dan aman -->
+    <!-- DEKORASI BACKGROUND -->
     <i class="fa-solid fa-cloud bg-deco-icon float-anim" style="top: 8%; left: 5%; font-size: 90px; animation-delay: 0s;"></i>
     <i class="fa-solid fa-shield-heart bg-deco-icon pulse-anim" style="top: 22%; right: 6%; font-size: 80px; animation-delay: 1.5s;"></i>
     <i class="fa-solid fa-shoe-prints bg-deco-icon float-anim" style="bottom: 35%; left: 6%; font-size: 70px; animation-delay: 3s; transform: rotate(-15deg);"></i>
@@ -378,140 +385,150 @@
     <!-- KONTAINER UTAMA -->
     <div class="container">
         
-        <!-- HEADER (BAGIAN YANG DIPERBARUI) -->
-        <header>
-            <div class="class-label">KELAS VIII - BAB IV</div>
-            <h1 class="main-title">DAMPAK SOSIAL INFORMATIKA</h1>
-        </header>
+        <div>
+            <!-- HEADER -->
+            <header>
+                <!-- Logo Paling Atas Tengah -->
+                <img src="https://cdn.phototourl.com/member/2026-10-20-301bf8f0-f5cd-4de0-a3fd-b9b3a2d0e3e0.png" alt="Logo Informatika Fun" class="header-logo">
+                <div class="class-label">KELAS VIII - BAB IV</div>
+                <h1 class="main-title">DAMPAK SOSIAL INFORMATIKA</h1>
+            </header>
 
-        <!-- LIST TOMBOL UTAMA -->
-        <main class="button-list">
+            <!-- LIST TOMBOL UTAMA -->
+            <main class="button-list">
 
-            <!-- Pertemuan 1 -->
-            <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab4-pertemuan1" class="learning-btn btn-p1">
-                <div class="icon-area" style="color: var(--accent-cyan);">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                </div>
-                <div class="btn-text">
-                    Pertemuan 1: Bentuk dan Jenis Perundungan Digital
-                </div>
-                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
-            </a>
+                <!-- Pertemuan 1 -->
+                <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab4-pertemuan1" class="learning-btn">
+                    <div class="icon-area">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </div>
+                    <div class="btn-text">
+                        Pertemuan 1: Bentuk dan Jenis Perundungan Digital
+                    </div>
+                    <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
 
-            <!-- Pertemuan 2 -->
-            <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab4-pertemuan2" class="learning-btn btn-p2">
-                <div class="icon-area" style="color: var(--accent-security);">
-                    <i class="fa-solid fa-scale-balanced"></i>
-                </div>
-                <div class="btn-text">
-                    Pertemuan 2: Dampak Psikologis, Sosial, serta Aspek Hukum Perundungan Digital
-                </div>
-                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
-            </a>
+                <!-- Pertemuan 2 -->
+                <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab4-pertemuan2" class="learning-btn">
+                    <div class="icon-area">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <div class="btn-text">
+                        Pertemuan 2: Dampak Psikologis, Sosial, serta Aspek Hukum Perundungan Digital
+                    </div>
+                    <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
 
-            <!-- Pertemuan 3 -->
-            <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab4-pertemuan3" class="learning-btn btn-p3">
-                <div class="icon-area" style="color: var(--accent-green);">
-                    <i class="fa-solid fa-hand-holding-hand"></i>
-                </div>
-                <div class="btn-text">
-                    Pertemuan 3: Strategi Pencegahan dan Penanganan Kasus Cyberbullying
-                </div>
-                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
-            </a>
+                <!-- Pertemuan 3 -->
+                <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab4-pertemuan3" class="learning-btn">
+                    <div class="icon-area">
+                        <i class="fa-solid fa-hand-holding-hand"></i>
+                    </div>
+                    <div class="btn-text">
+                        Pertemuan 3: Strategi Pencegahan dan Penanganan Kasus Cyberbullying
+                    </div>
+                    <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
 
-            <!-- Pertemuan 4 -->
-            <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab4-pertemuan4" class="learning-btn btn-p4">
-                <div class="icon-area" style="color: var(--accent-gold);">
-                    <i class="fa-solid fa-shoe-prints"></i>
-                </div>
-                <div class="btn-text">
-                    Pertemuan 4: Pengenalan Rekam Jejak Digital
-                </div>
-                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
-            </a>
+                <!-- Pertemuan 4 -->
+                <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab4-pertemuan4" class="learning-btn">
+                    <div class="icon-area">
+                        <i class="fa-solid fa-shoe-prints"></i>
+                    </div>
+                    <div class="btn-text">
+                        Pertemuan 4: Pengenalan Rekam Jejak Digital
+                    </div>
+                    <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
 
-            <!-- Pertemuan 5 -->
-            <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab4-pertemuan5" class="learning-btn btn-p5">
-                <div class="icon-area" style="color: var(--accent-blue);">
-                    <i class="fa-solid fa-user-lock"></i>
-                </div>
-                <div class="btn-text">
-                    Pertemuan 5: Dampak Rekam Jejak Digital Terhadap Privasi, Reputasi, dan Masa Depan
-                </div>
-                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
-            </a>
+                <!-- Pertemuan 5 -->
+                <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab4-pertemuan5" class="learning-btn">
+                    <div class="icon-area">
+                        <i class="fa-solid fa-user-lock"></i>
+                    </div>
+                    <div class="btn-text">
+                        Pertemuan 5: Dampak Rekam Jejak Digital Terhadap Privasi, Reputasi, dan Masa Depan
+                    </div>
+                    <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
 
-            <!-- Pertemuan 6 -->
-            <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab4-pertemuan6" class="learning-btn btn-p6">
-                <div class="icon-area" style="color: var(--accent-security);">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
-                <div class="btn-text">
-                    Pertemuan 6: Manajemen Rekam Jejak Digital & Pengaturan Privasi Akun (Digital Hygiene)
-                </div>
-                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
-            </a>
+                <!-- Pertemuan 6 -->
+                <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab4-pertemuan6" class="learning-btn">
+                    <div class="icon-area">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div class="btn-text">
+                        Pertemuan 6: Manajemen Rekam Jejak Digital & Pengaturan Privasi Akun (Digital Hygiene)
+                    </div>
+                    <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
 
-            <!-- Pertemuan 7 -->
-            <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab4-pertemuan7" class="learning-btn btn-p7">
-                <div class="icon-area" style="color: var(--accent-cyan);">
-                    <i class="fa-solid fa-comments"></i>
-                </div>
-                <div class="btn-text">
-                    Pertemuan 7: Etika Berwarganet (Netiquette) dan Kebudayaan Komunikasi Berempati di Media Sosial
-                </div>
-                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
-            </a>
+                <!-- Pertemuan 7 -->
+                <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab4-pertemuan7" class="learning-btn">
+                    <div class="icon-area">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <div class="btn-text">
+                        Pertemuan 7: Etika Berwarganet (Netiquette) dan Kebudayaan Komunikasi Berempati di Media Sosial
+                    </div>
+                    <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
 
-            <!-- Pertemuan 8 -->
-            <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab4-pertemuan8" class="learning-btn btn-p8">
-                <div class="icon-area" style="color: var(--accent-green);">
-                    <i class="fa-solid fa-users"></i>
-                </div>
-                <div class="btn-text">
-                    Pertemuan 8: Menghargai Keragaman Pandangan dan Mencegah Ujaran Kebencian (Hate Speech)
-                </div>
-                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
-            </a>
+                <!-- Pertemuan 8 -->
+                <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab4-pertemuan8" class="learning-btn">
+                    <div class="icon-area">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div class="btn-text">
+                        Pertemuan 8: Menghargai Keragaman Pandangan dan Mencegah Ujaran Kebencian (Hate Speech)
+                    </div>
+                    <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
 
-            <!-- Pertemuan 9 -->
-            <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab4-pertemuan9" class="learning-btn btn-p9">
-                <div class="icon-area" style="color: var(--accent-gold);">
-                    <i class="fa-solid fa-bullhorn"></i>
-                </div>
-                <div class="btn-text">
-                    Pertemuan 9: Proyek Kampanye Digital / Analisis Kasus Kewargaan Digital Sehat
-                </div>
-                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
-            </a>
+                <!-- Pertemuan 9 -->
+                <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab4-pertemuan9" class="learning-btn">
+                    <div class="icon-area">
+                        <i class="fa-solid fa-bullhorn"></i>
+                    </div>
+                    <div class="btn-text">
+                        Pertemuan 9: Proyek Kampanye Digital / Analisis Kasus Kewargaan Digital Sehat
+                    </div>
+                    <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
 
-            <!-- Games -->
-            <a href="#LINK_GAMES" class="learning-btn btn-games">
-                <div class="icon-area" style="color: var(--accent-blue);">
-                    <i class="fa-solid fa-gamepad"></i>
-                </div>
-                <div class="btn-text">
-                    Games
-                </div>
-                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
-            </a>
+                <!-- Games -->
+                <a href="#LINK_GAMES" class="learning-btn">
+                    <div class="icon-area">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <div class="btn-text">
+                        Games
+                    </div>
+                    <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
 
-            <!-- Sumatif BAB IV -->
-            <a href="#LINK_SUMATIF_BAB_IV" class="learning-btn btn-sumatif">
-                <div class="icon-area" style="color: var(--accent-security);">
-                    <i class="fa-solid fa-clipboard-list"></i>
-                </div>
-                <div class="btn-text">
-                    Sumatif BAB IV
-                </div>
-                <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
-            </a>
+                <!-- Sumatif BAB IV -->
+                <a href="#LINK_SUMATIF_BAB_IV" class="learning-btn">
+                    <div class="icon-area">
+                        <i class="fa-solid fa-clipboard-list"></i>
+                    </div>
+                    <div class="btn-text">
+                        Sumatif BAB IV
+                    </div>
+                    <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
 
-        </main>
+            </main>
+        </div>
+
+        <!-- FOOTER HALAMAN -->
+        <footer class="page-footer">
+            <p>INFORMATIKA FUN @ By: Riski Amalia, S.Pd</p>
+        </footer>
+
     </div>
 
-    <!-- SCRIPT RIPPLE EFFECT UNTUK INTERAKSI TENTUH/KLIK -->
+    <!-- SCRIPT RIPPLE EFFECT UNTUK INTERAKSI KLIK -->
     <script>
         document.querySelectorAll('.learning-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
@@ -531,7 +548,7 @@
 
                 setTimeout(() => {
                     circle.remove();
-                }, 500);
+                }, 400);
             });
         });
     </script>
