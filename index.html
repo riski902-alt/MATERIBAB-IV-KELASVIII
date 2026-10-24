@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INFORMATIKA FUN - Kelas VIII Bab IV: Dampak Sosial Informatika</title>
+    <title>INFORMATIKA FUN - Kelas VIII Bab III: Jaringan Komputer dan Internet</title>
     
     <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,27 +61,18 @@
             padding-bottom: 24px;
         }
 
-        /* =========================================================
-           2. ANIMASI BACKGROUND DEKORATIF
-           ========================================================= */
+        /* ELEMEN DEKORATIF BACKGROUND (SUBTLE FLOATING) */
         .bg-deco-icon {
             position: absolute;
             color: #FFFFFF;
             opacity: 0.15;
             z-index: 0;
+            animation: floatSlow 7s ease-in-out infinite;
             pointer-events: none;
         }
-        
-        .float-anim { animation: floatSlow 7s ease-in-out infinite; }
-        .pulse-anim { animation: pulseSlow 5s ease-in-out infinite; }
-        
         @keyframes floatSlow {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(3deg); }
-        }
-        @keyframes pulseSlow {
-            0%, 100% { transform: scale(1); opacity: 0.15; }
-            50% { transform: scale(1.05); opacity: 0.25; }
+            50% { transform: translateY(-15px) rotate(4deg); }
         }
 
         /* CONTAINER UTAMA */
@@ -105,7 +96,7 @@
             align-items: center;
         }
 
-        /* Logo Atas Tengah (Ukuran Ukuran Proporsional & Profesional) */
+        /* Logo Atas Tengah (Ukuran Proporsional & Profesional) */
         .header-logo {
             width: 75px;
             height: auto;
@@ -126,18 +117,23 @@
         .main-title {
             color: var(--title-main);
             font-weight: 800;
+            margin-top: 4px;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
         }
 
-        /* =========================================================
-           3. STYLING TOMBOL MATERI (BENTO CARD STYLE INDEX 2)
-           ========================================================= */
+        /* SPACING STRUKTUR */
+        .header-to-content-gap {
+            margin-bottom: 24px;
+        }
+
+        /* LIST TOMBOL VERTIKAL */
         .button-list {
             width: 100%;
             display: flex;
             flex-direction: column;
         }
 
+        /* STYLING KARTU TOMBOL INTERAKTIF (BENTO CARD STYLE) */
         .learning-btn {
             display: flex;
             align-items: center;
@@ -170,7 +166,7 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         }
 
-        /* AREA IKON */
+        /* ANATOMI TOMBOL: AREA IKON */
         .icon-area {
             display: flex;
             justify-content: center;
@@ -183,7 +179,7 @@
             transform: scale(1.15) rotate(5deg);
         }
 
-        /* TEKS TOMBOL */
+        /* ANATOMI TOMBOL: TEKS (Wajib Rata Kiri-Kanan / Justify) */
         .btn-text {
             flex-grow: 1;
             color: var(--text-btn);
@@ -225,9 +221,7 @@
             }
         }
 
-        /* =========================================================
-           4. FOOTER STYLING
-           ========================================================= */
+        /* FOOTER STYLING */
         .page-footer {
             width: 100%;
             text-align: center;
@@ -245,7 +239,7 @@
         }
 
         /* =========================================================
-           5. RESPONSIVITAS PRESI SESUAI SPESIFIKASI
+           2. UKURAN RESPONSIF PRESI Sesuai SPESIFIKASI
            ========================================================= */
 
         /* A. DESKTOP — ≥ 1200px */
@@ -259,13 +253,12 @@
                 padding-top: 40px;
                 padding-bottom: 24px;
             }
-            .class-label { font-size: 18px; line-height: 1.15; }
-            .main-title { font-size: 38px; line-height: 1.15; margin-top: 4px; }
-            .button-list { margin-top: 24px; }
+            .class-label { font-size: 18px; }
+            .main-title { font-size: 38px; line-height: 1.15; }
 
+            .button-list { margin-top: 24px; }
             .learning-btn {
                 min-height: 82px;
-                height: auto;
                 padding: 18px 26px;
                 border-radius: 24px;
                 margin-bottom: 16px;
@@ -277,6 +270,7 @@
             }
             .icon-area {
                 width: 52px;
+                height: 52px;
                 font-size: 32px;
             }
         }
@@ -291,13 +285,12 @@
                 padding-top: 32px;
                 padding-bottom: 20px;
             }
-            .class-label { font-size: 16px; line-height: 1.15; }
-            .main-title { font-size: 32px; line-height: 1.15; margin-top: 4px; }
-            .button-list { margin-top: 20px; }
+            .class-label { font-size: 16px; }
+            .main-title { font-size: 32px; line-height: 1.15; }
 
+            .button-list { margin-top: 20px; }
             .learning-btn {
                 min-height: 78px;
-                height: auto;
                 padding: 17px 22px;
                 border-radius: 20px;
                 margin-bottom: 14px;
@@ -309,6 +302,7 @@
             }
             .icon-area {
                 width: 48px;
+                height: 48px;
                 font-size: 28px;
             }
         }
@@ -324,13 +318,12 @@
                 padding-bottom: 16px;
             }
             .header-logo { width: 65px; }
-            .class-label { font-size: 14px; line-height: 1.2; }
-            .main-title { font-size: 25px; line-height: 1.2; margin-top: 4px; }
-            .button-list { margin-top: 18px; }
+            .class-label { font-size: 14px; }
+            .main-title { font-size: 25px; line-height: 1.2; }
 
+            .button-list { margin-top: 18px; }
             .learning-btn {
                 min-height: 76px;
-                height: auto;
                 padding: 16px 18px;
                 border-radius: 18px;
                 margin-bottom: 12px;
@@ -342,6 +335,7 @@
             }
             .icon-area {
                 width: 42px;
+                height: 42px;
                 font-size: 26px;
             }
             .page-footer p { font-size: 0.78rem; }
@@ -368,6 +362,7 @@
             }
             .icon-area {
                 width: 38px;
+                height: 38px;
                 font-size: 24px;
             }
             .page-footer p { font-size: 0.72rem; }
@@ -376,11 +371,11 @@
 </head>
 <body>
 
-    <!-- DEKORASI BACKGROUND -->
-    <i class="fa-solid fa-cloud bg-deco-icon float-anim" style="top: 8%; left: 5%; font-size: 90px; animation-delay: 0s;"></i>
-    <i class="fa-solid fa-shield-heart bg-deco-icon pulse-anim" style="top: 22%; right: 6%; font-size: 80px; animation-delay: 1.5s;"></i>
-    <i class="fa-solid fa-shoe-prints bg-deco-icon float-anim" style="bottom: 35%; left: 6%; font-size: 70px; animation-delay: 3s; transform: rotate(-15deg);"></i>
-    <i class="fa-regular fa-comments bg-deco-icon float-anim" style="bottom: 12%; right: 8%; font-size: 75px; animation-delay: 2s;"></i>
+    <!-- DEKORASI BACKGROUND (JARINGAN & INTERNET) -->
+    <i class="fa-solid fa-network-wired bg-deco-icon" style="top: 8%; left: 5%; font-size: 90px; animation-delay: 0s;"></i>
+    <i class="fa-solid fa-wifi bg-deco-icon" style="top: 25%; right: 6%; font-size: 75px; animation-delay: 2s;"></i>
+    <i class="fa-solid fa-globe bg-deco-icon" style="bottom: 30%; left: 6%; font-size: 80px; animation-delay: 4s;"></i>
+    <i class="fa-solid fa-shield-halved bg-deco-icon" style="bottom: 10%; right: 8%; font-size: 70px; animation-delay: 1s;"></i>
 
     <!-- KONTAINER UTAMA -->
     <div class="container">
@@ -390,27 +385,136 @@
             <header>
                 <!-- Logo Paling Atas Tengah -->
                 <img src="https://cdn.phototourl.com/member/2026-10-20-301bf8f0-f5cd-4de0-a3fd-b9b3a2d0e3e0.png" alt="Logo Informatika Fun" class="header-logo">
-                <div class="class-label">KELAS VIII - BAB IV</div>
-                <h1 class="main-title">DAMPAK SOSIAL INFORMATIKA</h1>
+                <div class="class-label">KELAS VIII - BAB III</div>
+                <h1 class="main-title">JARINGAN KOMPUTER DAN INTERNET</h1>
             </header>
+
+            <div class="header-to-content-gap"></div>
 
             <!-- LIST TOMBOL UTAMA -->
             <main class="button-list">
 
                 <!-- Pertemuan 1 -->
-                <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab4-pertemuan1" class="learning-btn">
+                <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab3-pertemuan1" class="learning-btn">
                     <div class="icon-area">
-                        <i class="fa-solid fa-mobile-screen-button"></i>
+                        <i class="fa-solid fa-diagram-project"></i>
                     </div>
                     <div class="btn-text">
-                        Pertemuan 1: Bentuk dan Jenis Perundungan Digital
+                        Pertemuan 1: Pengenalan Jaringan Komputer, Jaringan Lokal (LAN), dan Topologi Jaringan
                     </div>
                     <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
                 </a>
 
                 <!-- Pertemuan 2 -->
-                <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab4-pertemuan2" class="learning-btn">
+                <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab3-pertemuan2" class="learning-btn">
                     <div class="icon-area">
-                        <i class="fa-solid fa-scale-balanced"></i>
+                        <i class="fa-solid fa-globe"></i>
                     </div>
                     <div class="btn-text">
+                        Pertemuan 2: Jaringan Internet, World Wide Web (WWW), dan Cara Kerja Router
+                    </div>
+                    <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
+
+                <!-- Pertemuan 3 -->
+                <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab3-pertemuan3" class="learning-btn">
+                    <div class="icon-area">
+                        <i class="fa-solid fa-wifi"></i>
+                    </div>
+                    <div class="btn-text">
+                        Pertemuan 3: Koneksi Internet, Bandwidth, Sinyal Wi-Fi, dan Proteksi Sandi
+                    </div>
+                    <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
+
+                <!-- Pertemuan 4 -->
+                <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab3-pertemuan4" class="learning-btn">
+                    <div class="icon-area">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <div class="btn-text">
+                        Pertemuan 4: Enkripsi Data, HTTPS, dan Proteksi Data Pribadi saat Berinternet
+                    </div>
+                    <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
+
+                <!-- Pertemuan 5 -->
+                <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab3-pertemuan5" class="learning-btn">
+                    <div class="icon-area">
+                        <i class="fa-solid fa-tower-cell"></i>
+                    </div>
+                    <div class="btn-text">
+                        Pertemuan 5: Komunikasi Data pada Telepon Seluler dan Teknologi Jaringan 4G/5G
+                    </div>
+                    <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
+
+                <!-- Pertemuan 6 -->
+                <a href="https://riski902-alt.github.io/DASHBOARD-MATERI/index.html?id=kelas8-sem2-bab3-pertemuan6" class="learning-btn">
+                    <div class="icon-area">
+                        <i class="fa-solid fa-wrench"></i>
+                    </div>
+                    <div class="btn-text">
+                        Pertemuan 6: Troubleshooting Gangguan Jaringan dan Praktik Etika Berkomunikasi Digital
+                    </div>
+                    <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
+
+                <!-- Games -->
+                <a href="#LINK_GAMES" class="learning-btn">
+                    <div class="icon-area">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <div class="btn-text">
+                        Games
+                    </div>
+                    <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
+
+                <!-- Sumatif BAB III -->
+                <a href="#LINK_SUMATIF_3" class="learning-btn">
+                    <div class="icon-area">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <div class="btn-text">
+                        Sumatif BAB III
+                    </div>
+                    <div class="arrow-area"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
+
+            </main>
+        </div>
+
+        <!-- FOOTER HALAMAN -->
+        <footer class="page-footer">
+            <p>INFORMATIKA FUN @ By: Riski Amalia, S.Pd</p>
+        </footer>
+
+    </div>
+
+    <!-- SCRIPT RIPPLE EFFECT UNTUK INTERAKSI KLIK -->
+    <script>
+        document.querySelectorAll('.learning-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const circle = document.createElement('span');
+                circle.classList.add('ripple');
+
+                const diameter = Math.max(rect.width, rect.height);
+                circle.style.width = circle.style.height = `${diameter}px`;
+                circle.style.left = `${x - diameter / 2}px`;
+                circle.style.top = `${y - diameter / 2}px`;
+
+                btn.appendChild(circle);
+
+                setTimeout(() => {
+                    circle.remove();
+                }, 400);
+            });
+        });
+    </script>
+</body>
+</html>
